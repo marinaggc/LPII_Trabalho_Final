@@ -1,0 +1,33 @@
+Servidor iniciando...
+Servidor configurado com sucesso na porta 8080
+Servidor aguardando por conexoes...
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste
+
+Cliente desconectado.
+Novo cliente conectado: IP 127.0.0.1
+Cliente desconectado.
+Novo cliente conectado: IP 127.0.0.1
+Cliente desconectado.
+Servidor iniciando...
+Servidor configurado com sucesso na porta 8080
+Servidor aguardando por conexoes...
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste
+
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste2
+
+Cliente desconectado.
+Cliente desconectado.
+Servidor iniciando...
+Servidor configurado com sucesso na porta 8080
+Servidor aguardando por conexoes...
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste2
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste3
+Novo cliente conectado: IP 127.0.0.1
+Mensagem recebida: teste4

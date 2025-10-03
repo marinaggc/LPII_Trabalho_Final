@@ -1,40 +1,29 @@
 #include "Logger.h"
+#include "Server.h"
 #include <iostream>
-#include <thread> // Biblioteca para usar threads
-#include <vector> // Para guardar nossas threads
-
-// Esta é a função que cada thread irá executar
-void task(int thread_id) {
-    for (int i = 0; i < 100; ++i) {
-        // Constrói uma mensagem única para cada log
-        std::string message = "Mensagem " + std::to_string(i) + " da Thread " + std::to_string(thread_id);
-        
-        // Escreve no log
-        Logger::getInstance().log(message);
-    }
-}
 
 int main() {
-    std::cout << "Iniciando o teste de log concorrente." << std::endl;
+    // Inicializa o logger para registrar os eventos do servidor
+    Logger::getInstance().start("server_log.txt");
 
-    // Inicia o logger
-    Logger::getInstance().start("log_concorrente.txt");
+    // Define a porta em que o servidor vai escutar
+    const int PORT = 8080;
 
-    // Cria um vetor para armazenar as threads
-    std::vector<std::thread> threads;
-    const int NUM_THREADS = 10;
+    std::cout << "Iniciando o servidor na porta " << PORT << "..." << std::endl;
+    Logger::getInstance().log("Servidor iniciando...");
 
-    // Inicia 10 threads, cada uma executando a função 'task'
-    for (int i = 0; i < NUM_THREADS; ++i) {
-        threads.emplace_back(task, i + 1);
+    try {
+        // Cria e inicia o servidor
+        Server chatServer(PORT);
+        chatServer.start();
+    } catch (const std::exception& e) {
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        Logger::getInstance().log("Erro fatal: " + std::string(e.what()));
+        return 1;
     }
 
-    // Espera todas as threads terminarem seu trabalho
-    for (int i = 0; i < NUM_THREADS; ++i) {
-        threads[i].join();
-    }
-
-    std::cout << "Teste finalizado. Verifique o arquivo log_concorrente.txt" << std::endl;
+    Logger::getInstance().log("Servidor finalizado.");
+    std::cout << "Servidor finalizado." << std::endl;
 
     return 0;
 }
